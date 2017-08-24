@@ -36,6 +36,6 @@ node ('nodejs')
     }
 
     if (env.BRANCH_NAME != 'master') {
-        properties([pipelineTriggers([upstream(threshold: hudson.model.Result.SUCCESS, upstreamProjects: '${pipelineName}/master')])])
+        properties([pipelineTriggers([upstream(threshold: hudson.model.Result.SUCCESS, upstreamProjects: "${pipelineName}/master")])])
     }
 }
