@@ -5,13 +5,12 @@ node ('nodejs')
     def pipelineName = array[array.length - 2];
 
     stage('Checkout') {
+        checkout scm
         if (env.BRANCH_NAME != "master"){
            sh "git checkout master"
            sh "git branch tmp_${env.BRANCH_NAME}"
            sh "git checkout tmp_${env.BRANCH_NAME}"
            sh "git merge master"
-        }else{
-            checkout scm
         }
     }
     stage('Install Dep') {
