@@ -1,6 +1,7 @@
 node ('nodejs')
 
  {
+    print "${env.BRANCH_NAME}"
     stage('Checkout') {
         checkout scm
     }
