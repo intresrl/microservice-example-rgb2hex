@@ -1,7 +1,9 @@
 node ('nodejs')
 
  {
-    print ""
+    def array = env.JOB_NAME.split("/")
+    def pipelineName = array[array.length - 2];
+
     stage('Checkout') {
         if (env.BRANCH_NAME != "master"){
            sh "git checkout master"
@@ -32,5 +34,9 @@ node ('nodejs')
             sh "git checkout ${env.BRANCH_NAME}"
             sh "git branch -D tmp_${env.BRANCH_NAME}"
         }
+    }
+
+    if (env.BRANCH_NAME != 'master') {
+        properties([pipelineTriggers([upstream(threshold: hudson.model.Result.SUCCESS, upstreamProjects: '${pipelineName}/master')])])
     }
 }
