@@ -15,5 +15,8 @@ node ('nodejs')
     }
     stage('Tests') {
         sh 'npm run test:pre-deploy'
+        step([$class: 'XUnitBuilder',
+                        thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
+                        tools: [[$class: 'JUnitType', pattern: 'test-report/test-pre-deploy-report.xml']]])
     }
 }
