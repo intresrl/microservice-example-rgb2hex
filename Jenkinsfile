@@ -1,9 +1,16 @@
 node ('nodejs')
 
  {
-    print "${env.BRANCH_NAME}"
+    print ""
     stage('Checkout') {
-        checkout scm
+        if (${env.BRANCH_NAME} != "master"){
+           sh 'git checkout master'
+           sh 'git branch tmp_${env.BRANCH_NAME}'
+           sh 'git checkout tmp_${env.BRANCH_NAME}'
+           sh 'git merge master'
+        }else{
+            checkout scm
+        }
     }
     stage('Install Dep') {
         sh 'npm install'
@@ -19,5 +26,11 @@ node ('nodejs')
         step([$class: 'XUnitBuilder',
                         thresholds: [[$class: 'FailedThreshold', unstableThreshold: '1']],
                         tools: [[$class: 'JUnitType', pattern: 'test-report/test-pre-deploy-report.xml']]])
+    }
+    stage('Clean'){
+        if (${env.BRANCH_NAME} != "master"){
+            sh 'git checkout ${env.BRANCH_NAME}'
+            sh 'git branch -D tmp_${env.BRANCH_NAME}'
+        }
     }
 }
