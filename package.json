@@ -1,0 +1,39 @@
+{
+  "name": "color-converter-rgb2hex",
+  "version": "0.0.1",
+  "description": "",
+  "main": "server.js",
+  "repository": "",
+  "author": "Gianni Bombelli <bombelli@intre.it>",
+  "scripts": {
+    "build": "npm run clean && babel src -d out --copy-files",
+    "clean": "del-cli out",
+    "lint": "npm run lint:es",
+    "lint:es": "eslint src/**/*.js",
+    "serve": "npm run build && node out/controller/http.js",
+    "start": "nodemon src/controller/http.js --exec babel-node",
+    "test": "npm run test:pre-deploy && npm run test:post-deploy",
+    "test:pre-deploy": "mocha ./src/service/**/*.test.js --opts ./src/service/.mocharc",
+    "test:post-deploy": "mocha ./src/controller/**/*.test.js --opts ./src/controller/.mocharc"
+  },
+  "dependencies": {
+    "express": "^4.13.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "chai": "^4.1.1",
+    "chai-http": "^3.0.0",
+    "del-cli": "^1.1.0",
+    "eslint": "^4.4.1",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "eslint-plugin-node": "^5.1.1",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "mocha": "^3.5.0",
+    "mocha-jenkins-reporter": "^0.3.8",
+    "nodemon": "^1.11.0"
+  }
+}

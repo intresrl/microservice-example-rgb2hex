@@ -1,0 +1,3 @@
+--reporter mocha-jenkins-reporter
+--reporter-options junit_report_path=./test-report/test-pre-deploy-report.xml
+--compilers js:babel-register
