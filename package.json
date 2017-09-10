@@ -41,5 +41,8 @@
     "mocha": "^3.5.0",
     "mocha-jenkins-reporter": "^0.3.8",
     "nodemon": "^1.11.0"
+  },
+  "engines": {
+    "node": ">=6.10.0"
   }
 }
