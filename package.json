@@ -10,19 +10,22 @@
     "email": "bombelli@intre.it"
   },
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "scripts": {
     "build": "npm run clean && babel src -d out --copy-files",
     "clean": "del-cli out",
     "lint": "npm run lint:es",
     "lint:es": "eslint src/**/*.js",
-    "serve": "npm run build && npm run build && node out/controller/http.js",
+    "serve": "npm run build && node out/controller/http.js",
     "start": "nodemon src/controller/http.js --exec babel-node",
     "test": "npm run test:pre-deploy && npm run test:post-deploy",
     "test:pre-deploy": "mocha ./src/service/**/*.test.js --opts ./src/service/.mocharc",
     "test:post-deploy": "mocha ./src/controller/**/*.test.js --opts ./src/controller/.mocharc"
   },
   "dependencies": {
-    "color-convert": "^1.9.0",
     "express": "^4.13.3"
   },
   "devDependencies": {

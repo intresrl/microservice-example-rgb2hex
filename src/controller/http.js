@@ -42,6 +42,4 @@ app.get('/hex2rgb', function (req, res) {
   res.send(hex2rgb({'hex': req.query.hex}))
 })
 
-export default function httpServer () {
-  app.listen(config.port)
-}
+app.listen(config.port)
