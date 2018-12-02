@@ -23,7 +23,7 @@ import config from './http.config.json'
 import { tests } from '../test-data/colors'
 
 chai.config.includeStack = true
-chai.should()
+const should = chai.should()
 chai.use(chaiHttp)
 
 describe('Color Converter rgb2hex REST API', () => {
@@ -36,8 +36,9 @@ describe('Color Converter rgb2hex REST API', () => {
         chai.request(url)
           .get('/rgb2hex')
           .query(test.rgbValue)
-          .then(res => {
-            res.status.should.equal(200)
+          .end((err, res) => {
+            should.not.exist(err)
+            res.should.have.status(200)
             res.body.should.deep.equal(test.hexValue)
             done()
           })
@@ -51,8 +52,9 @@ describe('Color Converter rgb2hex REST API', () => {
         chai.request(url)
           .get('/hex2rgb')
           .query(test.hexValue)
-          .then(res => {
-            res.status.should.equal(200)
+          .end((err, res) => {
+            should.not.exist(err)
+            res.should.have.status(200)
             res.body.should.deep.equal(test.rgbValue)
             done()
           })

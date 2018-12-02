@@ -1,9 +1,7 @@
 FROM node:8
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-RUN mkdir -p /usr/src/app/out
-RUN mkdir -p /usr/src/app/node_modules
+RUN mkdir -p /usr/src/app/{out,node_modules}
 WORKDIR /usr/src/app
 
 # Bundle app source

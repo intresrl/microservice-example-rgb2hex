@@ -35,11 +35,11 @@ app.get('/rgb2hex', function (req, res) {
   var green = parseInt(req.query.green, 10)
   var blue = parseInt(req.query.blue, 10)
 
-  res.send(rgb2hex({'red': red, 'green': green, 'blue': blue}))
+  res.send(rgb2hex({ 'red': red, 'green': green, 'blue': blue }))
 })
 
 app.get('/hex2rgb', function (req, res) {
-  res.send(hex2rgb({'hex': req.query.hex}))
+  res.send(hex2rgb({ 'hex': req.query.hex }))
 })
 
 app.listen(config.port)
